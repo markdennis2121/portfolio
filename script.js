@@ -1077,19 +1077,6 @@ if (previewCvBtn && cvModal) {
             cvModal.classList.remove('active');
         });
     }
-
-    const cvHireBtn = document.getElementById('cvHireBtn');
-    if (cvHireBtn) {
-        cvHireBtn.addEventListener('click', (e) => {
-            cvModal.classList.remove('active');
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                setTimeout(() => {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                }, 150);
-            }
-        });
-    }
 }
 
 // Close modals on Backdrop Click or Escape Key
