@@ -384,10 +384,10 @@ if (aiFabBtn && aiModal) {
 const typewriterText = document.getElementById('typewriterText');
 if (typewriterText) {
     const roles = [
-        "AI & Computer Vision Specialist",
-        "Full Stack Web & Backend Engineer",
-        "Workflow Automation Architect",
-        "Deep Learning Researcher"
+        "AI & Computer Vision",
+        "Full-Stack Web & Backend Engineering",
+        "Workflow Automation & System Architecture",
+        "Deep Learning & Neural Networks"
     ];
     let roleIndex = 0;
     let charIndex = 0;
