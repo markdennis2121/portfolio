@@ -676,7 +676,7 @@ if (copyPhoneBtn) {
 
 
 // =========================================
-// Interactive Glass Contact Form Handler (Web3Forms API)
+// Interactive Glass Contact Form Handler (Web3Forms API + Anti-Spam Rate Limiter)
 // =========================================
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -686,6 +686,46 @@ if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = document.getElementById('contactName').value.trim();
+
+        // 1. Honeypot Anti-Spam Verification
+        const botcheck = contactForm.querySelector('input[name="botcheck"]');
+        if (botcheck && botcheck.checked) {
+            console.warn('Bot submission blocked via Honeypot field.');
+            if (formStatus) {
+                formStatus.className = 'form-status success';
+                formStatus.textContent = `✔ Thank you, ${name}! Your message has been sent directly to Mark's inbox.`;
+            }
+            contactForm.reset();
+            return;
+        }
+
+        // 2. Client-Side Rate Limiter (30s Cooldown & Max 5 Messages / Hour)
+        const COOLDOWN_MS = 30 * 1000;
+        const MAX_PER_HOUR = 5;
+        const now = Date.now();
+        const lastSubmit = parseInt(localStorage.getItem('contact_last_submit') || '0', 10);
+        const submitHistory = JSON.parse(localStorage.getItem('contact_submit_history') || '[]');
+
+        const recentSubmissions = submitHistory.filter(time => now - time < 60 * 60 * 1000);
+
+        if (now - lastSubmit < COOLDOWN_MS) {
+            const remainingSec = Math.ceil((COOLDOWN_MS - (now - lastSubmit)) / 1000);
+            if (formStatus) {
+                formStatus.className = 'form-status error';
+                formStatus.textContent = `⏳ Please wait ${remainingSec} second${remainingSec > 1 ? 's' : ''} before sending another message.`;
+            }
+            showToast(`Rate limit active: Please wait ${remainingSec}s before retrying.`);
+            return;
+        }
+
+        if (recentSubmissions.length >= MAX_PER_HOUR) {
+            if (formStatus) {
+                formStatus.className = 'form-status error';
+                formStatus.textContent = `⚠️ Hourly submission limit reached (max ${MAX_PER_HOUR} messages/hour). Please reach out directly on LinkedIn!`;
+            }
+            showToast('Hourly limit reached. Please contact via LinkedIn directly.');
+            return;
+        }
 
         // Update button state to sending
         if (contactSubmitBtn) {
@@ -708,6 +748,11 @@ if (contactForm) {
             const data = await response.json();
 
             if (data.success) {
+                // Record submission timestamp in localStorage
+                recentSubmissions.push(now);
+                localStorage.setItem('contact_last_submit', now.toString());
+                localStorage.setItem('contact_submit_history', JSON.stringify(recentSubmissions));
+
                 if (formStatus) {
                     formStatus.className = 'form-status success';
                     formStatus.textContent = `✔ Thank you, ${name}! Your message has been sent directly to Mark's inbox.`;
