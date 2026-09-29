@@ -161,7 +161,7 @@ const terminalCommands = {
             <p class="terminal-line">  SQL Server, PostgreSQL, OneDrive Graph API, Python Scripting</p>`,
 
     projects: `<p class="terminal-line term-info">📌 Featured Projects:</p>
-              <p class="terminal-line">1. <b>Crab Gender Classification CNN</b> - Evaluated 5 CNN models with 98% accuracy (Published in Thailand)</p>
+              <p class="terminal-line">1. <b>Crab Gender Classification CNN</b> - Built from scratch and fine-tuned to 98.8% accuracy (Published in Thailand)</p>
               <p class="terminal-line">2. <b>Leslie Corp Document Automation</b> - OneDrive Graph API pipeline (99.9% reliability)</p>
               <p class="terminal-line">3. <b>Hitachi Astemo ADAS QA</b> - AI Video Data Annotation for Autonomous Driving</p>`,
 
@@ -289,8 +289,8 @@ const aiChatInput = document.getElementById('aiChatInput');
 const responses = {
     skills: "Mark specializes in **AI & Computer Vision** (TensorFlow, CNNs, Transfer Learning), **Full Stack Development** (React, ASP.NET, C#), **Database Architecture** (SQL Server, PostgreSQL), and **Workflow Automations** (OneDrive Graph API, Python pipelines).",
     experience: "Mark is currently a **Junior Web Developer at Leslie Corporation** (built automated document pipelines & optimized SQL APIs). Previously, he was an **AI Data & QA Contributor at Anosupo** (Hitachi Astemo ADAS & ZOZO NEXT AI virtual try-on).",
-    thesis: "Mark co-authored an internationally published research paper at the **12th Huachiew Chalermprakiet University International Academic Conference (Thailand)** evaluating 5 CNN architectures for Blue Swimming Crab Gender Classification with 98% accuracy!",
-    projects: "Key featured builds include:\n• **Crab CNN Classifier** (98% Accuracy, 5 Models Evaluated)\n• **Leslie Corp Automated Document Pipeline** (OneDrive Graph API)\n• **Hitachi ADAS AI QA** (Video Dataset Annotations)",
+    thesis: "Mark co-authored an internationally published research paper at the **12th Huachiew Chalermprakiet University International Academic Conference (Thailand)** on Blue Swimming Crab Gender Classification, with model accuracy reaching 98.8%!",
+    projects: "Key featured builds include:\n• **Crab CNN Classifier** (developed from scratch and fine-tuned, 98.8% accuracy)\n• **Leslie Corp Automated Document Pipeline** (OneDrive Graph API)\n• **Hitachi ADAS AI QA** (Video Dataset Annotations)",
     education: "Mark graduated with a **Bachelor of Science in Computer Science** from **STI West Negros University** (Bacolod City, Negros Occidental) in June 2025.",
     contact: "You can reach Mark directly via email at **mmanangan021@gmail.com**, phone **+63 970 980 4794**, or connect on GitHub (**markdennis2121**) and LinkedIn!"
 };
@@ -435,20 +435,21 @@ if (statNumbers.length > 0) {
         animated = true;
 
         statNumbers.forEach(stat => {
-            const target = parseInt(stat.getAttribute('data-count')) || 0;
+            const target = Number(stat.getAttribute('data-count')) || 0;
             const suffix = stat.getAttribute('data-suffix') || '';
-            let current = 0;
-            const increment = Math.ceil(target / 40);
+            const decimals = (String(target).split('.')[1] || '').length;
+            let step = 0;
+            const steps = 40;
             const duration = 1500;
-            const stepTime = Math.abs(Math.floor(duration / (target / increment)));
+            const stepTime = duration / steps;
 
             const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
+                step++;
+                const current = Math.min(target, target * step / steps);
+                if (step >= steps) {
                     clearInterval(timer);
                 }
-                stat.textContent = current + suffix;
+                stat.textContent = current.toFixed(decimals) + suffix;
             }, stepTime);
         });
     }
@@ -959,7 +960,7 @@ async function fetchGithubTelemetry() {
                         <h5><i class="ri-git-repository-line"></i> crab-gender-classification-cnn</h5>
                         <a href="https://github.com/markdennis2121" target="_blank" style="color:var(--primary);"><i class="ri-external-link-line"></i></a>
                     </div>
-                    <p class="gh-repo-desc">Deep Learning 5-CNN Model Evaluation benchmark pipeline with 98% accuracy.</p>
+                    <p class="gh-repo-desc">Blue Swimming Crab classifier built from scratch and fine-tuned to 98.8% accuracy.</p>
                     <div class="gh-repo-footer">
                         <span class="gh-repo-lang"><span class="gh-lang-dot"></span> Python / TensorFlow</span>
                         <span>⭐ 15 | 🍴 4</span>
@@ -1051,7 +1052,7 @@ const projectDeepDives = {
         category: 'Deep Learning & Computer Vision',
         title: 'CNN Architectures for Blue Swimming Crab Gender Classification',
         github: 'https://github.com/markdennis2121',
-        live: 'https://github.com/markdennis2121',
+        live: 'https://crab-gender-guesser-app-gwumty7sbvhtggq6xq8ffk.streamlit.app/',
         body: `
             <div>
                 <h4 class="modal-section-title"><i class="ri-award-line"></i> Internationally Published Research</h4>
@@ -1059,7 +1060,7 @@ const projectDeepDives = {
             </div>
             <div>
                 <h4 class="modal-section-title"><i class="ri-brain-line"></i> Model Performance Benchmarks</h4>
-                <p>Trained and benchmarked 5 distinct Deep Convolutional Neural Network architectures (ResNet, MobileNet, EfficientNet, VGG16, Custom CNN) using OpenCV preprocessing and transfer learning, achieving up to <b>98% accuracy</b>.</p>
+                <p>Developed a CNN model from scratch and fine-tuned models for crab gender classification, achieving <b>98.8% accuracy</b>.</p>
             </div>
             <div>
                 <h4 class="modal-section-title"><i class="ri-stack-line"></i> Technical Specifications</h4>
@@ -1068,7 +1069,7 @@ const projectDeepDives = {
                     <span>TensorFlow / Keras</span>
                     <span>OpenCV</span>
                     <span>Transfer Learning</span>
-                    <span>Gradio UI</span>
+                    <span>Streamlit</span>
                 </div>
             </div>
         `
