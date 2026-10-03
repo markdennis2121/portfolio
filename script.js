@@ -287,10 +287,10 @@ const aiChatForm = document.getElementById('aiChatForm');
 const aiChatInput = document.getElementById('aiChatInput');
 
 const responses = {
-    skills: "Mark is a **Full Stack Developer** with experience in React, ASP.NET Core, C#, SQL Server, JavaScript, and REST APIs. He also has hands-on AI experience: built a CNN from scratch for his thesis (98.8% accuracy) and uses AI tools like GitHub Copilot and Claude to improve productivity.",
-    experience: "Mark is currently a **Junior Web Developer at Leslie Corporation** (built automated document pipelines & optimized SQL APIs). Previously, he was an **AI Data & QA Contributor at Anosupo** (Hitachi Astemo ADAS & ZOZO NEXT AI virtual try-on).",
-    thesis: "Mark co-authored an internationally published research paper at the **12th Huachiew Chalermprakiet University International Academic Conference (Thailand)** on Blue Swimming Crab Gender Classification, with model accuracy reaching 98.8%!",
-    projects: "Key featured builds include:\n• **Crab CNN Classifier** (developed from scratch and fine-tuned, 98.8% accuracy)\n• **Leslie Corp Automated Document Pipeline** (OneDrive Graph API)\n• **Hitachi ADAS AI QA** (Video Dataset Annotations)",
+    skills: "Mark is a **Junior Full Stack Developer** with production experience in React, JavaScript, jQuery, DataTables, C#, ASP.NET Core, ASP.NET Web Forms, SQL Server, SSRS, REST APIs, Microsoft Graph API, Supabase, Cloudflare Workers, Docker, and Render. He uses Git/GitHub daily and AI tools (Copilot, Claude, Cursor) to write better code faster.",
+    experience: "Mark currently works as a **Junior Web Developer at Leslie Corporation** — building, debugging, and maintaining features across production systems (ASP.NET Core, ASP.NET Web Forms, SQL Server, jQuery, DataTables, SSRS, Microsoft Graph API). He's worked on real company codebases, not just side projects.",
+    thesis: "Mark co-authored an internationally published research paper at the **12th Huachiew Chalermprakiet University International Academic Conference (Thailand)** on Blue Swimming Crab Gender Classification using CNNs, with model accuracy reaching 98.8%!",
+    projects: "Key featured builds include:\n• **Nubie** (React + Supabase full-stack learning platform, deployed on Cloudflare Workers)\n• **OneDrive Upload Engine** (C#, ASP.NET Core, Microsoft Graph API, SQL Server — built at Leslie Corp)\n• **Document Processing Pipeline** (Python + REST APIs + Google Sheets/Excel automation)\n• **Crab CNN Classifier** (98.8% accuracy, deployed as Streamlit app)",
     education: "Mark graduated with a **Bachelor of Science in Computer Science** from **STI West Negros University** (Bacolod City, Negros Occidental) in June 2025.",
     contact: "You can reach Mark directly via email at **mmanangan021@gmail.com**, phone **+63 970 980 4794**, or connect on GitHub (**markdennis2121**) and LinkedIn!"
 };
