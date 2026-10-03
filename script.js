@@ -170,8 +170,8 @@ const terminalCommands = {
                <p class="terminal-line term-info">📜 International Publication & Awards:</p>
                <p class="terminal-line">  12th Huachiew Chalermprakiet University Conference (Thailand) • Top 1 Best CS System Analyst</p>`,
 
-    whoami: `<p class="terminal-line term-info">Mark Dennis Manangan — AI Engineer • Full Stack Developer • Automation Specialist</p>
-            <p class="terminal-line">Currently Junior Web Developer @ Leslie Corporation. Passionate about AI solutions and scalable web engines.</p>`
+    whoami: `<p class="terminal-line term-info">Mark Dennis Manangan — Full Stack Developer</p>
+            <p class="terminal-line">Currently Junior Web Developer @ Leslie Corporation. Building web apps, APIs, and automation tools. Also experienced in AI/ML from thesis research.</p>`
 };
 
 function executeTerminalCommand(cmdRaw) {
@@ -287,7 +287,7 @@ const aiChatForm = document.getElementById('aiChatForm');
 const aiChatInput = document.getElementById('aiChatInput');
 
 const responses = {
-    skills: "Mark specializes in **AI & Computer Vision** (TensorFlow, CNNs, Transfer Learning), **Full Stack Development** (React, ASP.NET, C#), **Database Architecture** (SQL Server, PostgreSQL), and **Workflow Automations** (OneDrive Graph API, Python pipelines).",
+    skills: "Mark is a **Full Stack Developer** with experience in React, ASP.NET Core, C#, SQL Server, JavaScript, and REST APIs. He also has hands-on AI experience: built a CNN from scratch for his thesis (98.8% accuracy) and uses AI tools like GitHub Copilot and Claude to improve productivity.",
     experience: "Mark is currently a **Junior Web Developer at Leslie Corporation** (built automated document pipelines & optimized SQL APIs). Previously, he was an **AI Data & QA Contributor at Anosupo** (Hitachi Astemo ADAS & ZOZO NEXT AI virtual try-on).",
     thesis: "Mark co-authored an internationally published research paper at the **12th Huachiew Chalermprakiet University International Academic Conference (Thailand)** on Blue Swimming Crab Gender Classification, with model accuracy reaching 98.8%!",
     projects: "Key featured builds include:\n• **Crab CNN Classifier** (developed from scratch and fine-tuned, 98.8% accuracy)\n• **Leslie Corp Automated Document Pipeline** (OneDrive Graph API)\n• **Hitachi ADAS AI QA** (Video Dataset Annotations)",
@@ -318,7 +318,7 @@ function getAiResponse(userText) {
     } else if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
         return "Hello there! 👋 How can I assist you with Mark's portfolio today?";
     } else {
-        return "Mark is an AI Engineer and Full Stack Developer! Feel free to ask about his **skills**, **experience**, **projects**, **CNN research**, or **contact information**.";
+        return "Mark is a **Full Stack Developer** with experience in React, ASP.NET Core, C#, SQL Server, and REST APIs. Feel free to ask about his **skills**, **experience**, **projects**, **CNN research**, or **contact information**.";
     }
 }
 
@@ -384,10 +384,10 @@ if (aiFabBtn && aiModal) {
 const typewriterText = document.getElementById('typewriterText');
 if (typewriterText) {
     const roles = [
-        "AI & Computer Vision",
-        "Full-Stack Web & Backend Engineering",
-        "Workflow Automation & System Architecture",
-        "Deep Learning & Neural Networks"
+        "Full Stack Developer",
+        "React · ASP.NET Core · C# · SQL",
+        "API & Workflow Automation",
+        "AI-Assisted Development"
     ];
     let roleIndex = 0;
     let charIndex = 0;
@@ -435,6 +435,9 @@ if (statNumbers.length > 0) {
         animated = true;
 
         statNumbers.forEach(stat => {
+            // Skip text-based stat cards (they have no data-count attribute)
+            if (stat.classList.contains('stat-text-sm') || !stat.hasAttribute('data-count')) return;
+
             const target = Number(stat.getAttribute('data-count')) || 0;
             const suffix = stat.getAttribute('data-suffix') || '';
             const decimals = (String(target).split('.')[1] || '').length;
